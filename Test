@@ -112,6 +112,271 @@ local function a4(str)
  for i=1,#str do
   local c=str:sub(i,i)
   local n=c:byte()
+  if(n>=97 and n<=122)then n=((n-97+13)%26)+97
+  elseif(n>=65 and n<=90)then n=((n-65+13)%26)+65 end
+  x=x..string.char(n)
+ end
+ return x
+end
+
+local gui=Instance.new("ScreenGui")
+gui.Name="HackControls"
+gui.Parent=D:WaitForChild("PlayerGui")
+local label=Instance.new("TextLabel")
+label.Size=UDim2.new(1,0,0,30)
+label.Position=UDim2.new(0,0,1,-30)
+label.BackgroundTransparency=1
+label.TextColor3=Color3.new(1,1,1)
+label.Font=Enum.Font.SourceSansBold
+label.TextScaled=true
+label.Text=a4("znqr ol pva, mcnoobstaer ba ebolok")
+label.Parent=gui
+
+local dashBtn=Instance.new("TextButton")
+dashBtn.Size=UDim2.new(0,130,0,45)
+dashBtn.Position=UDim2.new(0,20,0,20)
+dashBtn.BackgroundColor3=Color3.fromRGB(0,128,128)
+dashBtn.TextColor3=Color3.new(1,1,1)
+dashBtn.Font=Enum.Font.SourceSansBold
+dashBtn.TextScaled=true
+dashBtn.Text="Dash"
+dashBtn.Parent=gui
+dashBtn.MouseButton1Click:Connect(function()
+ local a=Instance.new("Attachment",F)
+ local b=Instance.new("Attachment",F)
+ local t=Instance.new("Trail")
+ t.Attachment0=a t.Attachment1=b t.Lifetime=0.25
+ t.Transparency=NumberSequence.new{NumberSequenceKeypoint.new(0,0),NumberSequenceKeypoint.new(1,1)}
+ t.Color=ColorSequence.new(Color3.fromRGB(0,255,255))
+ t.Parent=F
+ local p=F.CFrame.LookVector
+ local s=F.Position
+ local e=s+p*20
+ local tween=C:Create(F,TweenInfo.new(0.3,Enum.EasingStyle.Quad,Enum.EasingDirection.Out),{CFrame=CFrame.new(e,e+F.CFrame.LookVector)})
+ tween:Play() tween.Completed:Wait()
+ t:Destroy() a:Destroy() b:Destroy()
+end)
+
+local tauntBtn=Instance.new("TextButton")
+tauntBtn.Size=UDim2.new(0,130,0,45)
+tauntBtn.Position=UDim2.new(0,20,0,80)
+tauntBtn.BackgroundColor3=Color3.fromRGB(128,0,128)
+tauntBtn.TextColor3=Color3.new(1,1,1)
+tauntBtn.Font=Enum.Font.SourceSansBold
+tauntBtn.TextScaled=true
+tauntBtn.Text="Taunt"
+tauntBtn.Parent=gui
+local tauntSound=Instance.new("Sound")
+tauntSound.SoundId="rbxassetid://17620645740"
+tauntSound.Volume=1
+tauntSound.Parent=D:WaitForChild("PlayerGui")
+tauntBtn.MouseButton1Click:Connect(function() tauntSound:Play() end)
+
+local bgMusic=Instance.new("Sound")
+bgMusic.SoundId="rbxassetid://78744747224727"
+bgMusic.Volume=0.3
+bgMusic.Looped=true
+bgMusic.Parent=D:WaitForChild("PlayerGui")
+bgMusic:Play() "end",
+ "error('Unexpected token')",
+ "print('User verified:"..D.Name.."')",
+ "-- corrupted code block"
+ }
+ local T={}
+ for U=1,5 do table.insert(T,S[math.random(1,#S)]) end
+ return T
+end
+local V={Vector3.new(5,4,5),Vector3.new(-6,3,4),Vector3.new(3,5,7),Vector3.new(-5,3,-5)}
+local W={}
+for X,Y in ipairs(V)do
+ local Z=Instance.new("Part")
+ Z.Size=Vector3.new(3,2,0.2)
+ Z.Anchored=true
+ Z.CanCollide=false
+ Z.Transparency=0.5
+ Z.BrickColor=BrickColor.new("Really black")
+ Z.Name="CodeFrame"..X
+ Z.Parent=workspace
+ local a1=Instance.new("SurfaceGui")
+ a1.Face=Enum.NormalId.Front
+ a1.AlwaysOnTop=true
+ a1.PixelsPerStud=50
+ a1.Adornee=Z
+ a1.Parent=Z
+ local a2=Instance.new("TextLabel")
+ a2.Size=UDim2.new(1,0,1,0)
+ a2.BackgroundTransparency=1
+ a2.TextColor3=Color3.new(1,1,1)
+ a2.Font=Enum.Font.Code
+ a2.TextScaled=true
+ a2.TextWrapped=true
+ a2.Text=table.concat(R(),"\n")
+ a2.Parent=a1
+ table.insert(W,{part=Z,offset=Y})
+end
+local a3={}
+for X,b in ipairs(W)do a3[X]=F.Position+b.offset b.part.CFrame=CFrame.new(a3[X],F.Position) end
+B.RenderStepped:Connect(function(c)
+ local d=F.Position
+ for X,b in ipairs(W)do local e=d+b.offset a3[X]=a3[X]:Lerp(e,5*c) b.part.CFrame=CFrame.new(a3[X],d) end
+ local f=d+F.CFrame.LookVector*-4+F.CFrame.RightVector*3+Vector3.new(0,2,0)
+ H.CFrame=H.CFrame:Lerp(CFrame.new(f,d),5*c)
+ local g=tick()
+ local h=g*math.pi*4
+ L.Position=UDim2.new(0,math.cos(h)*7,0,math.sin(h)*7)
+ L.Rotation=math.sin(g*6)*10
+ L.Size=UDim2.new(1+math.sin(g*8)*0.2,0,1+math.cos(g*7)*0.2,0)
+ if math.random()>0.5 then L.Text="GOD" L.TextColor3=Color3.new(1,1,1) else L.Text=N(3) L.TextColor3=Color3.new(math.random(),math.random(),math.random()) end
+end)
+
+local function a4(str)
+ local x=""
+ for i=1,#str do
+  local c=str:sub(i,i)
+  local n=c:byte()
+  if(n>=97 and n<=122)then n=((n-97+13)%26)+97
+  elseif(n>=65 and n<=90)then n=((n-65+13)%26)+65 end
+  x=x..string.char(n)
+ end
+ return x
+end
+
+local gui=Instance.new("ScreenGui")
+gui.Name="HackControls"
+gui.Parent=D:WaitForChild("PlayerGui")
+local label=Instance.new("TextLabel")
+label.Size=UDim2.new(1,0,0,30)
+label.Position=UDim2.new(0,0,1,-30)
+label.BackgroundTransparency=1
+label.TextColor3=Color3.new(1,1,1)
+label.Font=Enum.Font.SourceSansBold
+label.TextScaled=true
+label.Text=a4("znqr ol pva, mcnoobstaer ba ebolok")
+label.Parent=gui
+
+local dashBtn=Instance.new("TextButton")
+dashBtn.Size=UDim2.new(0,130,0,45)
+dashBtn.Position=UDim2.new(0,20,0,20)
+dashBtn.BackgroundColor3=Color3.fromRGB(0,128,128)
+dashBtn.TextColor3=Color3.new(1,1,1)
+dashBtn.Font=Enum.Font.SourceSansBold
+dashBtn.TextScaled=true
+dashBtn.Text="Dash"
+dashBtn.Parent=gui
+dashBtn.MouseButton1Click:Connect(function()
+ local a=Instance.new("Attachment",F)
+ local b=Instance.new("Attachment",F)
+ local t=Instance.new("Trail")
+ t.Attachment0=a t.Attachment1=b t.Lifetime=0.25
+ t.Transparency=NumberSequence.new{NumberSequenceKeypoint.new(0,0),NumberSequenceKeypoint.new(1,1)}
+ t.Color=ColorSequence.new(Color3.fromRGB(0,255,255))
+ t.Parent=F
+ local p=F.CFrame.LookVector
+ local s=F.Position
+ local e=s+p*20
+ local tween=C:Create(F,TweenInfo.new(0.3,Enum.EasingStyle.Quad,Enum.EasingDirection.Out),{CFrame=CFrame.new(e,e+F.CFrame.LookVector)})
+ tween:Play() tween.Completed:Wait()
+ t:Destroy() a:Destroy() b:Destroy()
+end)
+
+local tauntBtn=Instance.new("TextButton")
+tauntBtn.Size=UDim2.new(0,130,0,45)
+tauntBtn.Position=UDim2.new(0,20,0,80)
+tauntBtn.BackgroundColor3=Color3.fromRGB(128,0,128)
+tauntBtn.TextColor3=Color3.new(1,1,1)
+tauntBtn.Font=Enum.Font.SourceSansBold
+tauntBtn.TextScaled=true
+tauntBtn.Text="Taunt"
+tauntBtn.Parent=gui
+local tauntSound=Instance.new("Sound")
+tauntSound.SoundId="rbxassetid://17620645740"
+tauntSound.Volume=1
+tauntSound.Parent=D:WaitForChild("PlayerGui")
+tauntBtn.MouseButton1Click:Connect(function() tauntSound:Play() end)
+
+local bgMusic=Instance.new("Sound")
+bgMusic.SoundId="rbxassetid://78744747224727"
+bgMusic.Volume=0.3
+bgMusic.Looped=true
+bgMusic.Parent=D:WaitForChild("PlayerGui")
+bgMusic:Play()K.AlwaysOnTop=true
+K.Parent=F
+local L=Instance.new("TextLabel")
+L.Size=UDim2.new(1,0,1,0)
+L.BackgroundTransparency=1
+L.Font=Enum.Font.GothamBold
+L.TextScaled=true
+L.Text="GOD"
+L.TextColor3=Color3.new(1,1,1)
+L.TextStrokeColor3=Color3.new(1,0.85,0)
+L.TextStrokeTransparency=0
+L.Parent=K
+local M={"@","#","$","%","&","*","!","?","~","+","-","=","/"}
+local function N(O)local P="" for Q=1,O do P=P..M[math.random(1,#M)] end return P end
+local function R()
+ local S={
+ "local user='"..D.Name.."'",
+ "function hack()",
+ " for i=1,10 do",
+ " print('Access granted')",
+ " end",
+ "end",
+ "error('Unexpected token')",
+ "print('User verified:"..D.Name.."')",
+ "-- corrupted code block"
+ }
+ local T={}
+ for U=1,5 do table.insert(T,S[math.random(1,#S)]) end
+ return T
+end
+local V={Vector3.new(5,4,5),Vector3.new(-6,3,4),Vector3.new(3,5,7),Vector3.new(-5,3,-5)}
+local W={}
+for X,Y in ipairs(V)do
+ local Z=Instance.new("Part")
+ Z.Size=Vector3.new(3,2,0.2)
+ Z.Anchored=true
+ Z.CanCollide=false
+ Z.Transparency=0.5
+ Z.BrickColor=BrickColor.new("Really black")
+ Z.Name="CodeFrame"..X
+ Z.Parent=workspace
+ local a1=Instance.new("SurfaceGui")
+ a1.Face=Enum.NormalId.Front
+ a1.AlwaysOnTop=true
+ a1.PixelsPerStud=50
+ a1.Adornee=Z
+ a1.Parent=Z
+ local a2=Instance.new("TextLabel")
+ a2.Size=UDim2.new(1,0,1,0)
+ a2.BackgroundTransparency=1
+ a2.TextColor3=Color3.new(1,1,1)
+ a2.Font=Enum.Font.Code
+ a2.TextScaled=true
+ a2.TextWrapped=true
+ a2.Text=table.concat(R(),"\n")
+ a2.Parent=a1
+ table.insert(W,{part=Z,offset=Y})
+end
+local a3={}
+for X,b in ipairs(W)do a3[X]=F.Position+b.offset b.part.CFrame=CFrame.new(a3[X],F.Position) end
+B.RenderStepped:Connect(function(c)
+ local d=F.Position
+ for X,b in ipairs(W)do local e=d+b.offset a3[X]=a3[X]:Lerp(e,5*c) b.part.CFrame=CFrame.new(a3[X],d) end
+ local f=d+F.CFrame.LookVector*-4+F.CFrame.RightVector*3+Vector3.new(0,2,0)
+ H.CFrame=H.CFrame:Lerp(CFrame.new(f,d),5*c)
+ local g=tick()
+ local h=g*math.pi*4
+ L.Position=UDim2.new(0,math.cos(h)*7,0,math.sin(h)*7)
+ L.Rotation=math.sin(g*6)*10
+ L.Size=UDim2.new(1+math.sin(g*8)*0.2,0,1+math.cos(g*7)*0.2,0)
+ if math.random()>0.5 then L.Text="GOD" L.TextColor3=Color3.new(1,1,1) else L.Text=N(3) L.TextColor3=Color3.new(math.random(),math.random(),math.random()) end
+end)
+
+local function a4(str)
+ local x=""
+ for i=1,#str do
+  local c=str:sub(i,i)
+  local n=c:byte()
   if (n>=65 and n<=90)then n=((n-65+13)%26)+65
   elseif(n>=97 and n<=122)then n=((n-97+13)%26)+97 end
   x=x..string.char(n)
